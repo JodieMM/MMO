@@ -11,7 +11,8 @@ app.get('/', function(request, response) {
   
   
 });// Starts the server.
-server.listen(5000, function() {
+server.listen(5000, function() 
+{
   console.log('Starting server on port 5000');
 });
 
@@ -19,10 +20,12 @@ server.listen(5000, function() {
 var colors = ['pink', 'green', 'red', 'blue'];
 var players = {};
 
-io.on('connection', function(socket) {
-	
-	socket.on('new player', function() {
-		players[socket.id] = {
+io.on('connection', function(socket) 
+{
+	socket.on('new player', function() 
+	{
+		players[socket.id] = 
+		{
 			x: 300,
 			y: 300,
 			color: colors[Object.keys(players).length % colors.length]
@@ -34,26 +37,28 @@ io.on('connection', function(socket) {
 		delete players[socket.id];
 	});
   
-	socket.on('movement', function(data) {
+	socket.on('movement', function(data) 
+	{
 		var player = players[socket.id] || {};
 		
-		if (data.left) {
-			player.x -= 5;
+		if (data.x != player.x) 
+		{
+			var difference = Math.abs(data.x - player.x);
+			var increment = difference < 5 ? difference : 5;
+			player.x += (data.x > player.x) ? increment : -1 * increment;
 		}
-		if (data.up) {
-			player.y -= 5;
-		}
-		if (data.right) {
-			player.x += 5;
-		}
-		if (data.down) {
-			player.y += 5;
+		if (data.y != player.y) 
+		{
+			var difference = Math.abs(data.y - player.y);
+			var increment = difference < 5 ? difference : 5;
+			player.y += (data.y > player.y) ? increment : -1 * increment;
 		}
 	});
 	
 });
 
-setInterval(function() {
+setInterval(function() 
+{
 	io.sockets.emit('state', players);
 }, 1000 / 60);
 

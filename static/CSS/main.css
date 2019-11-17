@@ -1,0 +1,46 @@
+/* MAIN CSS */
+
+body
+{
+	background-color: #00a3cc;
+	font-family: 'Alata', sans-serif;
+	max-height: 100%;
+	margin: 0;
+}
+
+h1
+{
+	font-size: 3em;
+	color: white;
+	text-align: center;
+	padding-top: 0.5em;
+}
+
+canvas 
+{
+	display: block;
+	position: absolute;
+	width: 880px;
+	height: 600px;
+	margin: auto;
+	border-radius: 12px;
+}
+
+#canvasHolder
+{
+	width: 880px;
+	height: 600px;
+    margin: auto;
+	margin-bottom: 2em;
+}
+
+#tempButtonHolder
+{
+	position: relative;
+	top: -55px;
+}
+
+#layer1		/* Background */
+{
+	background-image: linear-gradient(#33d6ff, #80e5ff);;
+}

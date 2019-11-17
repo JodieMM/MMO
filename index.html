@@ -1,21 +1,23 @@
 <html>
-  <head>
-    <title>A Multiplayer Game</title>
-    <style>
-      canvas {
-        width: 800px;
-        height: 600px;
-        border: 5px solid black;
-		margin: auto;
-		display: block;
-      }
-    </style>
-    <script src="/socket.io/socket.io.js"></script>
-  </head>
-  <body>
-    <canvas id="canvas"></canvas>
-	<button id='exitbtn'>Exit</button>
-  <button id='newbtn'>New Player</button>
-  </body>
-  <script src="/static/game.js"></script>
+	<head>
+		<title>A Multiplayer Game</title>
+		<script src="/socket.io/socket.io.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="/static/CSS/main.css">
+	</head>
+	<body>
+		<h1> a christmas wonderland </h1>
+		<div id="canvasHolder">
+			<canvas id="layer1"></canvas>	<!-- Background -->
+			<canvas id="layer2"></canvas>	<!-- Animated Background Effects -->
+			<canvas id="layer3"></canvas>	<!-- Foreground -->
+			<canvas id="layer4"></canvas>	<!-- Animated Foreground Effects -->
+			<canvas id="canvas"></canvas>	<!-- Main Canvas, Characters -->
+		</div>
+		<div id="tempButtonHolder">
+			<button id='exitbtn'>Exit</button>
+			<button id='newbtn'>New Player</button>
+		</div>
+	</body>
+	<script src="/static/game.js"></script>
 </html>

@@ -45,13 +45,15 @@ io.on('connection', function(socket)
 		{
 			var difference = Math.abs(data.x - player.x);
 			var increment = difference < 5 ? difference : 5;
-			player.x += (data.x > player.x) ? increment : -1 * increment;
+			increment *= (data.x > player.x) ? 1 : -1;
+			player.x += increment;
 		}
 		if (data.y != player.y) 
 		{
 			var difference = Math.abs(data.y - player.y);
 			var increment = difference < 5 ? difference : 5;
-			player.y += (data.y > player.y) ? increment : -1 * increment;
+			increment *= (data.y > player.y) ? 1 : -1;
+			player.y += increment;
 		}
 	});
 	

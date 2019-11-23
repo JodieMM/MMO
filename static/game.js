@@ -9,7 +9,7 @@ var socket = io();
 
 // Prep Canvas
 var canvas = document.getElementById('canvas');
-canvas.width = 800;
+canvas.width = 880;
 canvas.height = 600;
 var context = canvas.getContext('2d');
 
@@ -35,7 +35,7 @@ setInterval(function()
 // Display State Sent From Server
 socket.on('state', function(players) 
 {
-	context.clearRect(0, 0, 800, 600);
+	context.clearRect(0, 0, 880, 600);
 
 	for (var id in players) 
 	{
@@ -73,3 +73,5 @@ document.getElementById("newbtn").addEventListener("click", function()
 {
   socket.emit('new player');
 });
+
+

@@ -17,8 +17,16 @@ server.listen(5000, function()
 });
 
 
+// --- Prep Variables
+
+// Static
 var colors = ['pink', 'green', 'red', 'blue'];
+var scenes = ['centre'];
+
+// Variable
 var players = {};
+var sceneCentre = [];
+
 
 io.on('connection', function(socket) 
 {
@@ -26,10 +34,13 @@ io.on('connection', function(socket)
 	{
 		players[socket.id] = 
 		{
+			scene: scenes[0],
 			x: 300,
 			y: 300,
 			color: colors[Object.keys(players).length % colors.length]
 		};
+		sceneCentre.push(socket);
+		socket.emit('scene', 'centre');
 	});
 	
 	socket.on('exit player', function()

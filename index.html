@@ -1,9 +1,31 @@
 <html>
 	<head>
 		<title>A Multiplayer Game</title>
-		<script src="/socket.io/socket.io.js"></script>
+		
+		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
+		
+		<!-- CSS -->
 		<link rel="stylesheet" href="/static/CSS/main.css">
+		
+		<!-- Mobile Icon -->
+		<!--<link rel="icon" href="Design/Images/logo.png"/>
+		<link rel="apple-touch-icon" href="Design/Images/logo.png"/>-->
+		
+		<!-- Link Constants -->
+		<base target="_blank">
+		
+		<!-- Viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=0.86, maximum-scale=3.0, minimum-scale=0.86">
+		
+		<!-- -- Code Components -- -->
+		
+		<!-- jQuery Library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		
+		<!-- JavaScript -->
+		<script src="/socket.io/socket.io.js"></script>
+		
 	</head>
 	<body>
 		<h1> a christmas wonderland </h1>
@@ -21,5 +43,7 @@
 			<button id='newbtn'>New Player</button>
 		</div>
 	</body>
+	
+	<!-- Post-Load JavaScript -->
 	<script src="/static/game.js"></script>
 </html>

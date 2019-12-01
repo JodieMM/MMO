@@ -7,13 +7,20 @@ var socket = io();
 
 // --- Prepatory
 
+// Constant Variables
+const canvasWidth = 880;
+const canvasHeight = 600;
+const menuBarHeight = 50;
+const repeatInterval = 1000 / 60;
+
+
 // Prep Canvases
 var canvas = $('#canvas')[0];
 var menuBar = $('#layer6')[0];
 var topLayer = $('#layer7')[0];
 
-canvas.width = menuBar.width = top.width = 880;
-canvas.height = menuBar.height = top.height = 600;
+canvas.width = menuBar.width = top.width = canvasWidth;
+canvas.height = menuBar.height = top.height = canvasHeight;
 
 var context = canvas.getContext('2d');
 var menuBarContext = menuBar.getContext('2d');
@@ -34,12 +41,12 @@ var scene = "";
 setInterval(function() 
 {
 	socket.emit('movement', click);
-}, 1000 / 60);
+}, repeatInterval);
 
 // Display State Sent From Server
 socket.on('state', function(players) 
 {
-	context.clearRect(0, 0, 880, 600);
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
 
 	for (var id in players) 
 	{
@@ -87,12 +94,12 @@ topLayer.addEventListener('click', function(event)
 		var xClick = event.clientX - rect.left;
 		var yClick = event.clientY - rect.top;
 	  
-		if (yClick < 548)		// Click Screen
+		if (yClick < (canvasHeight - menuBarHeight))		// Click Screen
 		{
 			click.x = xClick;
 			click.y = yClick;
 		}
-		else					// Click Menu Bar
+		else												// Click Menu Bar
 		{
 
 		}  
@@ -109,13 +116,13 @@ topLayer.addEventListener('mousemove', function(event)
 		var xClick = event.clientX - rect.left;
 		var yClick = event.clientY - rect.top;
 		
-		if (yClick < 548)		// Hover Screen
+		if (yClick < (canvasHeight - menuBarHeight))		// Hover Screen
 		{
-			
+			topLayer.style.cursor = 'default';
 		}
-		else					// Hover Menu Bar
+		else												// Hover Menu Bar
 		{
-			
+			topLayer.style.cursor = 'text';
 		}  
 	}
 });
@@ -127,13 +134,13 @@ topLayer.addEventListener('mousemove', function(event)
 // --- Surrounding Interactions
 
 // Exit Game on Button Press
-$("#exitbtn")[0].addEventListener("click", function()
+$('#exitbtn')[0].addEventListener('click', function()
 {
   socket.emit('exit player');
 });
 
 // Create Player on Button Press
-$("#newbtn")[0].addEventListener("click", function()
+$('#newbtn')[0].addEventListener('click', function()
 {
   socket.emit('new player');
 });
@@ -145,20 +152,20 @@ $("#newbtn")[0].addEventListener("click", function()
 // Clear Layers
 function clearLayers()
 {
-	context.clearRect(0, 0, 880, 600);
-	menuBarContext.clearRect(0, 0, 880, 600);
+	context.clearRect(0, 0, canvasWidth, canvasHeight);
+	menuBarContext.clearRect(0, 0, canvasWidth, canvasHeight);
 }
 
 // Draw the Menu Bar
 function drawMenuBar()
 {
-	var grd = menuBarContext.createLinearGradient(0, 550, 0, 590);
-	grd.addColorStop(0, "lightgrey");
-	grd.addColorStop(1, "white");
+	var grd = menuBarContext.createLinearGradient(0, canvasHeight - menuBarHeight, 0, canvasHeight - 10);
+	grd.addColorStop(0, 'lightgrey');
+	grd.addColorStop(1, 'white');
 	menuBarContext.fillStyle = grd;
-	menuBarContext.fillRect(0, 550, 880, 50);
+	menuBarContext.fillRect(0, canvasHeight - menuBarHeight, canvasWidth, menuBarHeight - 1);
 	menuBarContext.fillStyle = '#b3b3b3';
-	menuBarContext.fillRect(0, 549, 880, 1);
+	menuBarContext.fillRect(0, canvasHeight - menuBarHeight - 1, canvasWidth, 1);
 }
 
 

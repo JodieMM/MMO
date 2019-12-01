@@ -24,7 +24,7 @@ var click = {
   y: 0
 }
 
-var scene = null;
+var scene = "";
 
 
 
@@ -79,21 +79,48 @@ socket.on('scene', function(sceneName, boolScene, playerX, playerY)
 // --- Game Interactions
 
 // Set Click Coords
-topLayer.addEventListener('click', function(event) {
-  const rect = canvas.getBoundingClientRect();
-  var xClick = event.clientX - rect.left;
-  var yClick = event.clientY - rect.top;
-  
-  if (yClick < 548)		// Click Screen
-  {
-	  click.x = xClick;
-	  click.y = yClick;
-  }
-  else					// Click Menu Bar
-  {
+topLayer.addEventListener('click', function(event) 
+{
+	if (scene != "load")
+	{
+		const rect = canvas.getBoundingClientRect();
+		var xClick = event.clientX - rect.left;
+		var yClick = event.clientY - rect.top;
 	  
-  }  
+		if (yClick < 548)		// Click Screen
+		{
+			click.x = xClick;
+			click.y = yClick;
+		}
+		else					// Click Menu Bar
+		{
+
+		}  
+	}
 });
+
+
+// Change Cursor on Hover
+topLayer.addEventListener('mousemove', function(event)
+{
+	if (scene != "load")
+	{
+		const rect = canvas.getBoundingClientRect();
+		var xClick = event.clientX - rect.left;
+		var yClick = event.clientY - rect.top;
+		
+		if (yClick < 548)		// Hover Screen
+		{
+			
+		}
+		else					// Hover Menu Bar
+		{
+			
+		}  
+	}
+});
+	
+	
 
 
 

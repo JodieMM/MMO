@@ -21,7 +21,7 @@ server.listen(5000, function()
 
 // Static
 var colors = ['pink', 'green', 'red', 'blue'];
-var scenes = ['centre'];
+var scenes = ['centre', 'load'];
 
 // Variable
 var players = {};

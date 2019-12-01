@@ -28,8 +28,11 @@ var players = {};
 var sceneCentre = [];
 
 
+
+// --- Socket Interaction
 io.on('connection', function(socket) 
 {
+	// Create New Player
 	socket.on('new player', function() 
 	{
 		players[socket.id] = 
@@ -40,14 +43,16 @@ io.on('connection', function(socket)
 			color: colors[Object.keys(players).length % colors.length]
 		};
 		sceneCentre.push(socket);
-		socket.emit('scene', 'centre');
+		socket.emit('scene', 'centre', true, players[socket.id].x, players[socket.id].y);
 	});
 	
+	// Player Logs Off
 	socket.on('exit player', function()
 	{
 		delete players[socket.id];
 	});
   
+	// Player Moves
 	socket.on('movement', function(data) 
 	{
 		var player = players[socket.id] || {};
@@ -67,9 +72,13 @@ io.on('connection', function(socket)
 			player.y += increment;
 		}
 	});
-	
 });
 
+
+
+// --- Recurring Functions
+
+// Transmit Positions
 setInterval(function() 
 {
 	io.sockets.emit('state', players);

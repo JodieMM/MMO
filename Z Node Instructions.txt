@@ -1,6 +1,0 @@
-Open terminal
-cd to location (cd C:\xampp\htdocs\Sites\MMO)
-Run: node [server file name w/ extension]
-Ctrl + C to stop
-
-In browser, open: localhost:5000

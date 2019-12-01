@@ -20,8 +20,8 @@ var menuBarContext = menuBar.getContext('2d');
 
 // Character Variables
 var click = {
-  x: null,
-  y: null
+  x: 0,
+  y: 0
 }
 
 var scene = null;
@@ -52,14 +52,25 @@ socket.on('state', function(players)
 });
 
 // Change Scene
-socket.on('scene', function(sceneName)
+socket.on('scene', function(sceneName, boolScene, playerX, playerY)
 {
 	scene = sceneName;
 	clearLayers();
-	if (sceneName == 'centre')
+	
+	if (boolScene)
 	{
-		$("#layer1").css("background-image", "linear-gradient(#33d6ff, #80e5ff)");
+		click.x = playerX;
+		click.y = playerY;
 		drawMenuBar();
+		
+		if (sceneName == 'centre')
+		{	
+			$("#layer1").css("background-image", "linear-gradient(#33d6ff, #80e5ff)");			
+		}
+	}
+	else
+	{
+		// Create load screen
 	}
 });
 
@@ -121,12 +132,6 @@ function drawMenuBar()
 	menuBarContext.fillRect(0, 550, 880, 50);
 	menuBarContext.fillStyle = '#b3b3b3';
 	menuBarContext.fillRect(0, 549, 880, 1);
-	
-	
-	// menuBarContext.fillStyle = 'green';
-	// menuBarContext.beginPath();
-	// menuBarContext.rect(0, 550, 880, 600);
-	// menuBarContext.fill();
 }
 
 

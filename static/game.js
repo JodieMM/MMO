@@ -33,6 +33,8 @@ var click = {
 
 var scene = "";
 
+var coins = 0;
+
 
 
 // --- Repeating Game Functions
@@ -159,13 +161,19 @@ function clearLayers()
 // Draw the Menu Bar
 function drawMenuBar()
 {
+	// Draw Box
 	var grd = menuBarContext.createLinearGradient(0, canvasHeight - menuBarHeight, 0, canvasHeight - 10);
 	grd.addColorStop(0, 'lightgrey');
 	grd.addColorStop(1, 'white');
 	menuBarContext.fillStyle = grd;
 	menuBarContext.fillRect(0, canvasHeight - menuBarHeight, canvasWidth, menuBarHeight - 1);
+	// Draw Grey Line At Top
 	menuBarContext.fillStyle = '#b3b3b3';
 	menuBarContext.fillRect(0, canvasHeight - menuBarHeight - 1, canvasWidth, 1);
+	// Draw Coins
+	menuBarContext.font = "20px Alata";
+	menuBarContext.fillStyle = 'black';
+	menuBarContext.fillText(coins + "¢", 40, canvasHeight - menuBarHeight + 33);
 }
 
 
